@@ -1,0 +1,19 @@
+{
+  "name": "@cabbiepete/cloud-zoom",
+  "version": "1.0.4",
+  "description": "This is a fork of Version 1.0.2 of Professorclouds cloud zoom",
+  "main": "cloud-zoom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cabbiepete/cloud-zoom.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cabbiepete/cloud-zoom/issues"
+  },
+  "homepage": "https://github.com/cabbiepete/cloud-zoom#readme"
+}
