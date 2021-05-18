@@ -8,6 +8,9 @@
 // Please retain this copyright header in all versions of the software
 //////////////////////////////////////////////////////////////////////////////////
 (function (factory) {
+    if (typeof window === "undefined") {
+        return;
+    }
 
     if(typeof module === "object" && typeof module.exports === "object") {
       factory(require("jquery"), document);
