@@ -192,7 +192,6 @@
                 zoomDiv.fadeOut(300, function () {
                     ctx.fadedOut();
                 });
-                return false;
             });
             //////////////////////////////////////////////////////////////////////
             $mouseTrap.bind('mouseenter', this, function (event) {
