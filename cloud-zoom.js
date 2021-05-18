@@ -7,12 +7,14 @@
 //
 // Please retain this copyright header in all versions of the software
 //////////////////////////////////////////////////////////////////////////////////
-(function ($) {
+(function (factory) {
 
-    $(document).ready(function () {
-        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-    });
-
+    if(typeof module === "object" && typeof module.exports === "object") {
+      factory(require("jquery"), document);
+    } else {
+      factory(jQuery, document);
+    }
+}(function ($, document) {
     function format(str) {
         for (var i = 1; i < arguments.length; i++) {
             str = str.replace('%' + (i - 1), arguments[i]);
@@ -406,4 +408,4 @@
         gallerySwitchOnMouseOver: false
     };
 
-})(jQuery);
+}));
