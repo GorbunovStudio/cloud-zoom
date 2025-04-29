@@ -7,12 +7,17 @@
 //
 // Please retain this copyright header in all versions of the software
 //////////////////////////////////////////////////////////////////////////////////
-(function ($) {
+(function (factory) {
+    if (typeof window === "undefined") {
+        return;
+    }
 
-    $(document).ready(function () {
-        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-    });
-
+    if(typeof module === "object" && typeof module.exports === "object") {
+      factory(require("jquery"), document);
+    } else {
+      factory(jQuery, document);
+    }
+}(function ($, document) {
     function format(str) {
         for (var i = 1; i < arguments.length; i++) {
             str = str.replace('%' + (i - 1), arguments[i]);
@@ -87,7 +92,7 @@
             jWin.data('zoom', null);
 
             if ($mouseTrap) {
-                $mouseTrap.unbind();
+                $mouseTrap.off();
                 $mouseTrap.remove();
                 $mouseTrap = null;
             }
@@ -176,13 +181,13 @@
 
             //////////////////////////////////////////////////////////////////////
             /* Do as little as possible in mousemove event to prevent slowdown. */
-            $mouseTrap.bind('mousemove', this, function (event) {
+            $mouseTrap.on('mousemove', null, this, function (event) {
                 // Just update the mouse position
                 mx = event.pageX;
                 my = event.pageY;
             });
             //////////////////////////////////////////////////////////////////////
-            $mouseTrap.bind('mouseleave', this, function (event) {
+            $mouseTrap.on('mouseleave', null, this, function (event) {
                 jWin.trigger('cloudzoom_end_zoom');
                 clearTimeout(controlTimer);
                 //event.data.removeBits();
@@ -192,10 +197,9 @@
                 zoomDiv.fadeOut(300, function () {
                     ctx.fadedOut();
                 });
-                return false;
             });
             //////////////////////////////////////////////////////////////////////
-            $mouseTrap.bind('mouseenter', this, function (event) {
+            $mouseTrap.on('mouseenter', null, this, function (event) {
                 jWin.trigger('cloudzoom_start_zoom');
                 mx = event.pageX;
                 my = event.pageY;
@@ -322,7 +326,7 @@
         };
 
         img1 = new Image();
-        $(img1).load(function () {
+        $(img1).on('load', function () {
             ctx.init2(this, 0);
         });
 
@@ -333,7 +337,7 @@
         }
 
         img2 = new Image();
-        $(img2).load(function () {
+        $(img2).on('load', function () {
             ctx.init2(this, 1);
         });
         img2.src = jWin.attr('href');
@@ -384,10 +388,10 @@
                     $('#' + event.data.data('relOpts').useZoom).CloudZoom();
                     return false;
                 };
-                $(this).bind('click', $(this), switchImage);
+                $(this).on('click', null, $(this), switchImage);
 
                 if (opts.gallerySwitchOnMouseOver) {
-                    $(this).bind('mouseover', $(this), switchImage);
+                    $(this).on('mouseover', null, $(this), switchImage);
                 }
             }
         });
@@ -412,4 +416,4 @@
         gallerySwitchOnMouseOver: false
     };
 
-})(jQuery);
+}));
