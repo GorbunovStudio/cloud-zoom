@@ -330,7 +330,7 @@
             ctx.init2(this, 0);
         });
 
-        if (sImg && sImg[0] && sImg.currentSrc) {
+        if (sImg && sImg[0] && sImg[0].currentSrc) {
             img1.src = sImg[0].currentSrc
         } else {
             img1.src = sImg.attr('src');
